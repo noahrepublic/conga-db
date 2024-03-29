@@ -10,7 +10,7 @@ const PORT = 80;
 
 const http = require('http').createServer(app);
 
-http.listen(PORT, "0.0.0.0",() => console.log(`Server listening on port ${PORT}`));
+http.listen(PORT, process.env.SERVER_ADDRESS,() => console.log(`Server listening on port ${PORT}`));
 
 app.use( express.json() );
 
@@ -73,7 +73,7 @@ app.post(`/api/setSchema/:collection/`, async (req, res) => { // Set Schema
 app.post(`/api/delete/:collection/:key`, async (req, res) => { // Delete Document
     const collection = Conga.getCollection(req.params.collection)
 
-    
+
 
     collection.deleteDocument(req.params.key)
 
